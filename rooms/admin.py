@@ -32,7 +32,7 @@ class RoomAdmin(admin.ModelAdmin):
         ("Times", {"fields": ("check_in", "check_out", "instant_book")}),
         (
             "More About the Space",
-            {"classes": ("collapse",), "fields": ("amenities", "facilities", "house_rule")},
+            {"classes": ("collapse",), "fields": ("amenities", "facilities", "house_rules")},
         ),
         ("Last Details", {"fields": ("host",)}),
     )
@@ -60,7 +60,7 @@ class RoomAdmin(admin.ModelAdmin):
         "room_type",
         "amenities",
         "facilities",
-        "house_rule",
+        "house_rules",
         "city",
         "country",
     )
@@ -71,7 +71,7 @@ class RoomAdmin(admin.ModelAdmin):
 
     search_fields = ("=city", "^host__username")
 
-    filter_horizontal = ("amenities", "facilities", "house_rule")
+    filter_horizontal = ("amenities", "facilities", "house_rules")
 
     def count_amenities(self, obj):
         return obj.amenities.count()

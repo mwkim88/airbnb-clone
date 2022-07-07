@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django_countries.fields import CountryField
 from core import models as core_models
 
@@ -77,11 +78,14 @@ class Room(core_models.TimeStampedModel):
     )
     amenities = models.ManyToManyField("Amenity", related_name="rooms", blank=True)
     facilities = models.ManyToManyField("Facility", related_name="rooms", blank=True)
-    house_rule = models.ManyToManyField("HouseRule", related_name="rooms", blank=True)
+    house_rules = models.ManyToManyField("HouseRule", related_name="rooms", blank=True)
 
     def save(self, *args, **kwargs):
         self.city = self.city.title()
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("rooms:datail", kwargs={"self.pk"})
 
     def __str__(self):
         return self.name
