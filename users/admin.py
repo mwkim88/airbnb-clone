@@ -11,7 +11,17 @@ class userAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets + (
         (
             "Custom profiles",
-            {"fields": ("avatar", "gender", "bio", "birthdate", "language", "currency")},
+            {
+                "fields": (
+                    "avatar",
+                    "gender",
+                    "bio",
+                    "birthdate",
+                    "language",
+                    "currency",
+                    "superhost",
+                )
+            },
         ),
     )
 
